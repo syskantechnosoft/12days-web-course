@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table  align="center">
+        <tr>
+            <td>First Name</td>
+            <td><input type="text" name="fname" id="fname"></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input type="text" name="lname" id="lname"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="email" name="email" id="email"></td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td><input type="tel" name="phone" id="phone"></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><textarea name="address" id="address"></textarea></td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td><input type="text" name="city" id="city"></td>
+        </tr>
+        <tr>
+            <td>State</td>
+            <td><input type="text" name="state" id="state"></td>
+        </tr>
+        <tr>
+            <td>Zip Code</td>
+            <td><input type="text" name="zip" id="zip"></td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td><input type="text" name="country" id="country"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><select name="gender" id="gender">
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Date of Birth</td>
+            <td><input type="date" name="dob" id="dob"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="reset" value="Reset">&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+    <form action="#" align="center"> 
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="fname" maxlength="25" placeholder="Enter your First Name" required="required"> <span style="color: red;">*</span> <br>
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lname" maxlength="25" placeholder="Enter your Last Name" required="required"> <span style="color: red;">*</span> <br>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your Email" required="required"> <span style="color: red;">*</span> <br>
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your Phone" required="required"> <span style="color: red;">*</span> <br>
+        <label for="address">Address</label>
+        <textarea id="address" name="address" placeholder="Enter your Address" required="required"></textarea> <span style="color: red;">*</span> <br>
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" maxlength="25" placeholder="Enter your City" required="required"> <span style="color: red;">*</span> <br>
+        <label for="state">State</label>
+        <input type="text" id="state" name="state" maxlength="25" placeholder="Enter your State" required="required"> <span style="color: red;">*</span> <br>
+        <label for="zip">Zip Code</label>
+        <input type="text" id="zip" name="zip" maxlength="25" placeholder="Enter your Zip Code" required="required"> <span style="color: red;">*</span> <br>
+        <label for="country">Country</label>
+        <input type="text" id="country" name="country" maxlength="25" placeholder="Enter your Country" required="required"> <span style="color: red;">*</span> <br>
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required="required">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select> <span style="color: red;">*</span> <br>
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required="required"> <span style="color: red;">*</span> <br>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+</body>
+</html>
