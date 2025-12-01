@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookstore Integration Test</title>
+</head>
+<body>
+    <h1>Bookstore Integration Test</h1>
+    <div id="result"></div>
+    
+    <script>
+        // Test backend API
+        fetch('http://localhost:5000/api/books')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerHTML = 
+                    '<h2>Backend API Response:</h2><pre>' + 
+                    JSON.stringify(data, null, 2) + '</pre>';
+                console.log('Backend data:', data);
+            })
+            .catch(error => {
+                document.getElementById('result').innerHTML = 
+                    '<h2>Error:</h2><p>' + error.message + '</p>';
+                console.error('Error:', error);
+            });
+    </script>
+</body>
+</html>
