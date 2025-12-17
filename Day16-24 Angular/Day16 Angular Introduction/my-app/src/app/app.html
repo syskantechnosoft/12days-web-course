@@ -1,0 +1,29 @@
+<app-header 
+  [title]="title"
+  [menuItems]="menuItems"
+  [userInfo]="userInfo"
+  [theme]="currentTheme"
+  (logoClick)="onLogoClick()"
+  (menuItemClick)="onMenuItemClick($event)"
+  (searchQuery)="onSearchQuery($event)">
+</app-header>
+<div style="padding: 20px;">
+  <button (click)="counter = counter + 1" style="padding: 10px 20px; margin-bottom: 10px;">
+    Increment Parent Counter ({{ counter }})
+  </button>
+  <lifecycle-demo [counter]="counter"></lifecycle-demo>
+</div>
+<app-user-profile></app-user-profile> 
+
+<div style="padding: 20px; font-family: sans-serif;">
+      <h1>Daily Deals</h1>
+      
+      <div class="product-grid">
+        <app-product-card 
+          *ngFor="let item of products"
+          [product]="item" 
+          (addToCart)="handleAddToCart($event)">
+        </app-product-card>
+      </div>
+    </div>
+

@@ -1,0 +1,44 @@
+<div class="user-profile-container">
+    <div class="profile-header">
+        <img [src]="profileImage" [alt]="userName" class="profile-image">
+        <h2>{{ userName }}</h2>
+        <span class="status-badge" [class.active]="isActive">
+            {{ statusText }}
+        </span>
+    </div>
+
+    <div class="profile-details">
+        <div class="detail-item">
+            <label>Email:</label>
+            <span>{{ userEmail }}</span>
+        </div>
+
+        <div class="detail-item">
+            <label>Age:</label>
+            <span>{{ userAge }} years</span>
+        </div>
+
+        <div class="detail-item">
+            <label>Location:</label>
+            <span>{{ address.city }}, {{ address.country }}</span>
+        </div>
+
+        <div class="detail-item">
+            <label>Skills:</label>
+            <div class="skills-list">
+                <span class="skill-tag" *ngFor="let skill of skills">
+                    {{ skill }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-actions">
+        <button class="btn btn-primary" (click)="updateProfile()">
+            Update Profile
+        </button>
+        <button class="btn btn-secondary" (click)="toggleStatus()">
+            Toggle Status
+        </button>
+    </div>
+</div>

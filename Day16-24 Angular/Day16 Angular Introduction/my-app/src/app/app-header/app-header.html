@@ -1,0 +1,155 @@
+<header class="app-header" [class.dark-theme]="theme === 'dark'">
+  <div class="header-container">
+    <!-- Logo Section -->
+    <div class="header-logo" (click)="onLogoClick()">
+      <img 
+        *ngIf="logo" 
+        [src]="logo" 
+        [alt]="title"
+        class="logo-image">
+      <span class="logo-text">{{ title }}</span>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="header-nav desktop-nav">
+      <ul class="nav-list">
+        <li 
+          *ngFor="let item of menuItems" 
+          class="nav-item"
+          [class.active]="activeMenuItem === item.label">
+          <a 
+            (click)="onMenuItemClick(item)"
+            class="nav-link">
+            <span *ngIf="item.icon" class="nav-icon">{{ item.icon }}</span>
+            {{ item.label }}
+          </a>
+          
+          <!-- Dropdown for items with children -->
+          <ul *ngIf="item.children && item.children.length > 0" class="dropdown-menu">
+            <li *ngFor="let child of item.children" class="dropdown-item">
+              <a (click)="onMenuItemClick(child)">{{ child.label }}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Search Bar -->
+    <div *ngIf="showSearch" class="header-search">
+      <div class="search-input-group">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text"
+          [(ngModel)]="searchValue"
+          (keyup.enter)="onSearch()"
+          placeholder="Search..."
+          class="search-input">
+        <button 
+          *ngIf="searchValue"
+          (click)="clearSearch()"
+          class="clear-btn">
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <!-- Actions Section -->
+    <div class="header-actions">
+      <!-- Theme Toggle -->
+      <button 
+        (click)="onThemeToggle()"
+        class="icon-btn theme-toggle"
+        [title]="'Switch to ' + (theme === 'light' ? 'dark' : 'light') + ' theme'">
+        {{ theme === 'light' ? '🌙' : '☀️' }}
+      </button>
+
+      <!-- Notifications -->
+      <button class="icon-btn notification-btn" title="Notifications">
+        🔔
+        <span class="notification-badge">3</span>
+      </button>
+
+      <!-- User Menu -->
+      <div *ngIf="userInfo" class="user-menu-container">
+        <button 
+          (click)="toggleUserMenu()"
+          class="user-menu-btn">
+          <div class="user-avatar" *ngIf="!userInfo.avatar">
+            {{ getUserInitials() }}
+          </div>
+          <img 
+            *ngIf="userInfo.avatar"
+            [src]="userInfo.avatar"
+            [alt]="userInfo.name"
+            class="user-avatar-img">
+          <span class="user-name">{{ userInfo.name }}</span>
+          <span class="dropdown-arrow">▼</span>
+        </button>
+
+        <!-- User Dropdown Menu -->
+        <div *ngIf="isUserMenuOpen" class="user-dropdown">
+          <div class="user-dropdown-header">
+            <div class="user-avatar large" *ngIf="!userInfo.avatar">
+              {{ getUserInitials() }}
+            </div>
+            <img 
+              *ngIf="userInfo.avatar"
+              [src]="userInfo.avatar"
+              [alt]="userInfo.name"
+              class="user-avatar-img large">
+            <div class="user-info">
+              <div class="user-info-name">{{ userInfo.name }}</div>
+              <div class="user-info-email">{{ userInfo.email }}</div>
+              <div *ngIf="userInfo.role" class="user-info-role">{{ userInfo.role }}</div>
+            </div>
+          </div>
+          
+          <div class="user-dropdown-divider"></div>
+          
+          <ul class="user-dropdown-menu">
+            <li (click)="onUserMenuAction('profile')">
+              <span class="menu-icon">👤</span> Profile
+            </li>
+            <li (click)="onUserMenuAction('settings')">
+              <span class="menu-icon">⚙️</span> Settings
+            </li>
+            <li (click)="onUserMenuAction('billing')">
+              <span class="menu-icon">💳</span> Billing
+            </li>
+            <li class="divider"></li>
+            <li (click)="onUserMenuAction('help')">
+              <span class="menu-icon">❓</span> Help & Support
+            </li>
+            <li (click)="onUserMenuAction('logout')" class="logout">
+              <span class="menu-icon">🚪</span> Logout
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button 
+        (click)="toggleMenu()"
+        class="mobile-menu-toggle">
+        <span class="hamburger-icon">☰</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav *ngIf="isMenuOpen" class="mobile-nav">
+    <ul class="mobile-nav-list">
+      <li 
+        *ngFor="let item of menuItems"
+        class="mobile-nav-item"
+        [class.active]="activeMenuItem === item.label">
+        <a 
+          (click)="onMenuItemClick(item)"
+          class="mobile-nav-link">
+          <span *ngIf="item.icon" class="nav-icon">{{ item.icon }}</span>
+          {{ item.label }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
