@@ -1,0 +1,50 @@
+<h2>Reactive Form (Registration)</h2>
+
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" formControlName="username">
+        @if (f.username.invalid && (f.username.dirty || f.username.touched)) {
+        <div class="error">
+            @if (f.username.errors?.['required']) { Username is required. }
+            @if (f.username.errors?.['minlength']) { Username must be at least 3 characters. }
+        </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password">
+        @if (f.password.invalid && (f.password.dirty || f.password.touched)) {
+        <div class="error">
+            @if (f.password.errors?.['required']) { Password is required. }
+            @if (f.password.errors?.['minlength']) { Password must be at least 6 characters. }
+        </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword">
+        @if (registrationForm.hasError('passwordMismatch') && (f.confirmPassword.dirty || f.confirmPassword.touched)) {
+        <div class="error">
+            Passwords do not match.
+        </div>
+        }
+        @if (f.confirmPassword.invalid && (f.confirmPassword.dirty || f.confirmPassword.touched) &&
+        !registrationForm.hasError('passwordMismatch')) {
+        <div class="error">
+            @if (f.confirmPassword.errors?.['required']) { Confirm Password is required. }
+        </div>
+        }
+    </div>
+
+    <button type="submit" [disabled]="registrationForm.invalid">Register</button>
+</form>
+
+<div class="debug">
+    <h3>Form Value:</h3>
+    <pre>{{ registrationForm.value | json }}</pre>
+    <h3>Form Status:</h3>
+    <pre>{{ registrationForm.status }}</pre>
+</div>

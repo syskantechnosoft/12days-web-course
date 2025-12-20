@@ -1,0 +1,18 @@
+<h1> Home Page</h1>
+<nav>
+  <a routerLink="/" routerLinkActive="active">Home</a> &nbsp;
+  <a routerLink="/users" routerLinkActive="active">Users</a> &nbsp;
+  <a routerLink="/user-detail" routerLinkActive="active">User-Detail</a> &nbsp;
+  <a routerLink="/template-form" routerLinkActive="active">Template-Form</a> &nbsp;
+  <a routerLink="/reactive-form" routerLinkActive="active">Reactive-Form</a> &nbsp;
+  <a routerLink="/protec" routerLinkActive="active">Protected</a> &nbsp;
+</nav>
+<div class="auth-controls">
+  @if (authService.isLoggedIn()) {
+  <span>Welcome, User!</span>
+  <button (click)="authService.logout()">Logout</button>
+  } @else {
+  <button (click)="authService.login()">Login</button>
+  }
+</div>
+<router-outlet></router-outlet>

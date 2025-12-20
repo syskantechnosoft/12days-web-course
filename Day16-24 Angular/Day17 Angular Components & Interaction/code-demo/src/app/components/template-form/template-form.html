@@ -1,0 +1,38 @@
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+    <div class="form-group">
+        <label>Name :</label>
+        <input type="text" id="name" name="name" [(ngModel)]="formData.name" required placeholder="Enter Name here"
+            #name="ngModel" minlength="5" />
+        @if (name.invalid && (name.dirty || name.touched)) {
+        <div class="error">
+            @if (name.errors?.['required']) { Name is required. }
+            @if (name.errors?.['minlength']) { Name must be at least 5 characters long. }
+        </div>
+        }
+    </div>
+    <div class="form-group">
+        <label>Email :</label>
+        <input type="email" id="email" name="email" [(ngModel)]="formData.email" required
+            placeholder="Enter Your Email here" #email="ngModel" />
+        
+        @if (email.invalid && (email.dirty || email.touched)) {
+        <div class="error">
+            @if (email.errors?.['required']) { Email is required. }
+            @if (email.errors?.['email']) { Invalid email format. }
+        </div>
+        }
+    </div>
+    <div class="form-group">
+        <label>Message :</label>
+        <input type="text" id="message" name="message" [(ngModel)]="formData.message" required
+            placeholder="Enter Message here" #message="ngModel" />
+
+        @if (message.dirty || message.touched) {
+        <div class="error">
+            @if (message.errors?.['required']) { Message is required. }
+            
+        </div>
+        }
+    </div>
+    <button type="submit" [disabled]="contactForm.invalid"> Send Message</button>
+</form>
