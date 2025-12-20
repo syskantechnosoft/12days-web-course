@@ -1,0 +1,12 @@
+<h2>API Data (Signals)</h2>
+
+<div class="posts-list">
+    @for (post of posts(); track post.id) {
+    <div class="post-card">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.body }}</p>
+    </div>
+    } @empty {
+    <p>Loading posts...</p>
+    }
+</div>

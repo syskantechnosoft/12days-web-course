@@ -1,0 +1,18 @@
+<nav>
+    <ul>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li><a routerLink="/template-form" routerLinkActive="active">Template Form</a></li>
+        <li><a routerLink="/reactive-form" routerLinkActive="active">Reactive Form</a></li>
+        <li><a routerLink="/api" routerLinkActive="active">API Data</a></li>
+        <li><a routerLink="/protected" routerLinkActive="active">Protected</a></li>
+    </ul>
+
+    <div class="auth-controls">
+        @if (auth.isLoggedIn()) {
+        <span>Welcome, User!</span>
+        <button (click)="auth.logout()">Logout</button>
+        } @else {
+        <button (click)="auth.login()">Login</button>
+        }
+    </div>
+</nav>

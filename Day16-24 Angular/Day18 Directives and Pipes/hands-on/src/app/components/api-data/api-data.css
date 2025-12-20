@@ -1,0 +1,16 @@
+.posts-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.post-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.post-card h3 {
+    margin-top: 0;
+}
