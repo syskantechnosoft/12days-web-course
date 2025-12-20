@@ -1,0 +1,39 @@
+<div class="auth-container">
+    <h2>Register</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="name">Full Name</label>
+            <input id="name" type="text" formControlName="name">
+            <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error">Name is
+                required</div>
+        </div>
+        <div>
+            <label for="username">Username</label>
+            <input id="username" type="text" formControlName="username">
+            <div *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.errors as errors"
+                class="error">
+                <span *ngIf="errors['required']">Username is required</span>
+                <span *ngIf="errors['minlength']">Must be > 6 chars</span>
+                <span *ngIf="errors['pattern']">Alphanumeric only (no spaces/symbols)</span>
+            </div>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" formControlName="email">
+            <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors as errors"
+                class="error">
+                <span *ngIf="errors['required']">Email is required</span>
+                <span *ngIf="errors['pattern']">Invalid format (alphanumeric only, @ and .)</span>
+            </div>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input id="password" type="password" formControlName="password">
+            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error">
+                Password is required</div>
+        </div>
+        <button type="submit" [disabled]="registerForm.invalid">Register</button>
+    </form>
+
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
+</div>

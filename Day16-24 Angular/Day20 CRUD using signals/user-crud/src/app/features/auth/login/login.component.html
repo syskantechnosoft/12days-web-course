@@ -1,0 +1,51 @@
+<div class="auth-container">
+    <div class="card auth-card">
+        <div class="auth-header">
+            <h2>Welcome Back</h2>
+            <p class="text-muted">Sign in to continue to UserCrud</p>
+        </div>
+
+        <div class="grid-social">
+            <button class="btn btn-outline" (click)="onSocialLogin('Google')">
+                Google
+            </button>
+            <button class="btn btn-outline" (click)="onSocialLogin('Facebook')">
+                Facebook
+            </button>
+            <button class="btn btn-outline" (click)="onSocialLogin('LinkedIn')">
+                LinkedIn
+            </button>
+        </div>
+
+        <div class="divider">
+            <span>Or continue with</span>
+        </div>
+
+        <form (ngSubmit)="onLogin()" class="auth-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" [(ngModel)]="username" name="username" placeholder="admin" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="••••••••"
+                    required>
+            </div>
+
+            <div *ngIf="errorMsg" class="error-msg">
+                {{ errorMsg }}
+            </div>
+
+            <button type="submit" class="btn btn-primary full-width">
+                Sign In
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <p class="text-muted">
+                Don't have an account? <a routerLink="/register">Sign up</a>
+            </p>
+        </div>
+    </div>
+</div>

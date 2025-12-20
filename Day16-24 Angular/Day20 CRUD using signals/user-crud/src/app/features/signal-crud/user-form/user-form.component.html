@@ -1,0 +1,51 @@
+<div class="form-container">
+    <h2>{{ isEditMode ? 'Edit' : 'Add' }} User (Signals - Template Driven)</h2>
+
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" required [(ngModel)]="user.name" name="name" #name="ngModel">
+            @if (name.invalid && (name.dirty || name.touched)) {
+            <div class="error">Name is required.</div>
+            }
+        </div>
+
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" required minlength="7" pattern="^[a-zA-Z0-9]+$" [(ngModel)]="user.username"
+                name="username" #username="ngModel">
+            @if (username.invalid && (username.dirty || username.touched)) {
+            <div class="error">
+                @if(username.errors?.['required']) { Username is required. }
+                @if(username.errors?.['minlength']) { Must be > 6 chars. }
+                @if(username.errors?.['pattern']) { Alphanumeric only. }
+            </div>
+            }
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" required pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$"
+                [(ngModel)]="user.email" name="email" #email="ngModel">
+            @if (email.invalid && (email.dirty || email.touched)) {
+            <div class="error">
+                @if(email.errors?.['required']) { Email is required. }
+                @if(email.errors?.['pattern']) { Invalid format (alphanumeric only, @ and .). }
+            </div>
+            }
+        </div>
+
+        <div>
+            <label for="role">Role</label>
+            <select id="role" [(ngModel)]="user.role" name="role">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+
+        <div class="actions">
+            <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">Save</button>
+            <a routerLink="/signal-crud" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

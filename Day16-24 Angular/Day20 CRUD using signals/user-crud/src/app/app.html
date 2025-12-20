@@ -1,0 +1,13 @@
+<nav class="navbar" *ngIf="authService.isAuthenticated()">
+  <div class="nav-brand">User CRUD</div>
+  <div class="nav-links">
+    <a routerLink="/signal-crud" routerLinkActive="active">Signal CRUD</a>
+    <a routerLink="/legacy-crud" routerLinkActive="active">Legacy CRUD</a>
+    <button (click)="logout()" class="btn-logout">Logout</button>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+  <app-toast></app-toast>
+</div>

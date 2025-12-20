@@ -1,0 +1,32 @@
+<div class="list-container">
+    <div class="header">
+        <h2>User Management (Legacy Observables)</h2>
+        <a routerLink="/legacy-crud/add" class="btn btn-primary">Add User</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users$ | async" appHighlight>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role | role }}</td>
+                <td>
+                    <a [routerLink]="['/legacy-crud/edit', user.id]" class="btn btn-sm btn-info">Edit</a>
+                    <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
