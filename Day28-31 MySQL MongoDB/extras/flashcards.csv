@@ -1,0 +1,70 @@
+"In MySQL, what is the primary difference between a Command Line Interface (CLI) and a Graphical User Interface (GUI)?","A CLI uses text commands in a terminal, while a GUI like MySQL Workbench provides a visual interface with buttons and menus."
+What is the MySQL command to log in as the 'root' user and be prompted for a password from the command line?,mysql -u root -p
+"In MySQL Workbench, the _____ tab is used for viewing databases and tables, similar to a file explorer.",Schemas
+"What category of SQL commands (DDL, DML, DQL) is used to define the structure or 'skeleton' of a database?",DDL (Data Definition Language)
+"Which DDL command in SQL is used for completely demolishing a table, including its structure and data?",DROP
+Which DDL command removes all data from a table but leaves the table structure intact?,TRUNCATE
+"What type of SQL constraint ensures that every value in a column is unique and identifies a record, analogous to a passport number?",PRIMARY KEY
+"To prevent a column from accepting null values, which constraint should be used?",NOT NULL
+"Which SQL constraint is used to enforce a rule on a column, such as ensuring a salary value is always greater than zero?",CHECK
+"The _____ constraint creates a parent-child link between two tables, ensuring referential integrity.",FOREIGN KEY
+What is the common beginner's mistake in MySQL that leads to the 'No database selected' error?,Forgetting to use the `USE database_name;` command before executing other statements.
+"What category of SQL commands (DDL, DML, TCL) is used to manage the actual data content inside tables?",DML (Data Manipulation Language)
+What critical clause must always be used with an UPDATE statement in MySQL to avoid modifying every row in the table?,A WHERE clause.
+"In DQL, which keyword is used for pattern matching in a WHERE clause, such as finding all names that start with 'J'?","LIKE (e.g., WHERE name LIKE 'J%')"
+How do you correctly check for NULL values in a MySQL WHERE clause?,"Using the `IS NULL` or `IS NOT NULL` syntax, not the `=` operator."
+What is the difference between a row-level (scalar) function and a column-level (aggregate) function in SQL?,"Row-level functions operate on each row individually, while column-level functions operate on a group of rows to return a single value."
+The SQL function `UPPER()` is an example of a _____ function.,row-level (scalar)
+The SQL function `SUM()` is an example of a _____ function.,column-level (aggregate)
+"In SQL, the _____ clause is used to combine rows with identical values into summary rows, typically for use with aggregate functions.",GROUP BY
+What is the key difference between the WHERE and HAVING clauses in a SQL query?,"The WHERE clause filters rows before they are grouped, while the HAVING clause filters groups after they have been created."
+What does TCL (Transaction Control Language) manage in a database?,"It manages the changes made by DML statements, grouping them into logical transactions."
+Which TCL command permanently saves all changes made during the current transaction?,COMMIT
+"If a mistake is made during a transaction, which TCL command can be used to undo all changes since the transaction began?",ROLLBACK
+"In SQL, what is a query inside another query called?",A sub-query or nested query.
+"A sub-query that returns only a single value (one row, one column) is known as a _____ sub-query.",scalar
+"What is a correlated sub-query in SQL, and why can it be slow?","It's a sub-query that uses values from the outer query and runs once for every row of the outer query, making it potentially slow."
+"When checking for the existence of rows in a very large table, which operator is generally faster than IN: `EXISTS` or `ANY`?","EXISTS, because it stops searching as soon as it finds the first match."
+What is a stored procedure in MySQL?,A batch of SQL code saved on the server that can be executed with a single CALL statement.
+What is the primary difference between a User Defined Function (UDF) and a Stored Procedure in MySQL?,"A function must return a single value and is used within a query, while a procedure is executed separately and can return result sets."
+The MySQL statement `CREATE FUNCTION CalcTax(salary DECIMAL) RETURNS DECIMAL` is the beginning of a _____.,User Defined Function (UDF)
+What is a trigger in a SQL database?,"It is code that automatically executes or 'fires' in response to a specific event like an INSERT, UPDATE, or DELETE on a table."
+"In a MySQL trigger, what do the `OLD` and `NEW` keywords refer to?","`OLD` refers to the row's values before the triggering event, and `NEW` refers to the row's values after the event."
+What is the difference between a Shared Lock and an Exclusive Lock in a database?,"A Shared Lock allows multiple transactions to read data but not edit it, while an Exclusive Lock prevents any other transaction from reading or editing the data."
+What is a deadlock in a database system?,"A situation where two or more transactions are waiting for each other to release locks, preventing any of them from proceeding."
+"In database terms, what is the purpose of an index?",An index is a data structure that improves the speed of data retrieval operations on a table at the cost of slower writes.
+The type of index that physically sorts the table's data on the disk is called a _____ index.,Clustered
+What is the purpose of the `EXPLAIN` command in MySQL?,"It shows the execution plan for a query, detailing how the database intends to retrieve the data."
+"In the output of `EXPLAIN`, what does `type: ALL` signify, and is it good or bad for performance?","It signifies a Full Table Scan, which is bad for performance as it means the entire table was read."
+"Why is indexing a column with low cardinality, such as 'Gender', generally not useful?",Because the index doesn't filter out enough rows to be efficient; the database still has to read a large portion of the table.
+"In the SQL vs. NoSQL paradigm, MySQL is a relational database where data is stored in _____, while MongoDB is a document database where data is stored in _____.",Tables; Collections
+What is BSON and why does MongoDB use it instead of JSON?,BSON (Binary JSON) is a binary-encoded serialization of JSON-like documents that is faster to scan and supports additional data types like Date and Int64.
+What is the MongoDB CLI equivalent of the MySQL command-line client?,Mongosh
+What is the MongoDB GUI equivalent of MySQL Workbench?,MongoDB Compass
+What is the MongoDB command to insert a single document into a 'users' collection?,db.users.insertOne({ ... })
+How would you write a MongoDB query to find all documents in a 'users' collection where the status is 'A' and the age is 25?,"db.users.find({ status: 'A', age: 25 })"
+What is the MongoDB query operator for 'greater than'?,$gt
+"When updating a MongoDB document, why is it critical to use an update operator like `$set`?","If you don't use an update operator, MongoDB will replace the entire document with the update document, potentially deleting fields."
+Which MongoDB update operator is used to increment a numeric value in a field?,$inc
+"In MongoDB's Aggregation Framework, the _____ stage is used to reshape documents, similar to selecting specific columns or creating computed fields in SQL.",$project
+"In MongoDB's Aggregation Framework, the _____ stage is used to group documents, similar to SQL's `GROUP BY` clause.",$group
+"While MongoDB's schema is flexible, how can you enforce rules like required fields or data types on a collection?",By applying a JSON Schema validator to the collection during creation.
+Which MongoDB aggregation stage is used to perform a left outer join with another collection?,$lookup
+"What is the modern MongoDB equivalent for SQL Stored Procedures, given that `db.eval()` is deprecated?",Aggregation Pipelines or logic handled within the application code.
+"Instead of database triggers that fire inside the DB, MongoDB uses _____ which applications can listen to for real-time data changes.",Change Streams
+What is the 'ESR' Rule in MongoDB indexing?,"A best practice for ordering fields in a compound index: Equality first, then Sort, then Range."
+"If you create an index on an array field in MongoDB, what special type of index is automatically created?",A Multikey Index.
+Which special MongoDB index type automatically deletes documents after a specified number of seconds?,TTL (Time To Live) Index.
+"When using MongoDB's `.explain(""executionStats"")`, what does `COLLSCAN` indicate?","A Collection Scan, which is the slow equivalent of a Full Table Scan in SQL."
+What is the term for keeping copies of your data on multiple servers for high availability in MongoDB?,Replication.
+"In a MongoDB replica set, the _____ node handles all write operations.",Primary
+What happens if the Primary node in a MongoDB replica set fails?,An automatic election occurs among the secondary nodes to elect a new primary.
+What is the term for splitting data across many servers because it is too large for a single one?,Sharding.
+"In a sharded MongoDB cluster, what is the role of the `mongos` component?","It acts as a query router or 'traffic cop', directing application queries to the correct shard."
+What is a 'Shard Key' in MongoDB?,It is the field chosen to partition the data across the different shards.
+Mapping concepts: A SQL `Table` is equivalent to a MongoDB _____.,Collection
+Mapping concepts: A SQL `Row` is equivalent to a MongoDB _____.,Document
+Mapping concepts: A SQL `Column` is equivalent to a MongoDB _____.,Field
+Mapping concepts: A SQL `JOIN` is roughly equivalent to a MongoDB _____ operation.,$lookup
+"MySQL primarily uses _____ scaling, which means increasing CPU/RAM on a single server.",Vertical
+"MongoDB primarily uses _____ scaling, which means distributing data across multiple servers (sharding).",Horizontal
