@@ -1,0 +1,224 @@
+import React, { useState } from 'react';
+import { Download } from 'lucide-react';
+
+const NodeJSCourseTOC = () => {
+  const courseData = [
+    {
+      day: "Day 1",
+      theme: "Node.js Fundamentals & Environment Setup",
+      topics: [
+        "Introduction to Node.js - What, Why, and Where",
+        "Understanding Event-Driven Architecture",
+        "Installing Node.js and NPM",
+        "Node.js REPL and Basic Commands",
+        "Understanding package.json and node_modules",
+        "Core Modules: fs, path, os, http",
+        "Creating Your First Node.js Application",
+        "Introduction to Asynchronous Programming"
+      ],
+      practicals: [
+        "Setup development environment",
+        "Create a simple file system application",
+        "Build a basic HTTP server"
+      ]
+    },
+    {
+      day: "Day 2",
+      theme: "Express.js Framework & REST API Basics",
+      topics: [
+        "Introduction to Express.js Framework",
+        "Installing and Setting Up Express",
+        "Routing in Express (GET, POST, PUT, DELETE)",
+        "Middleware Concepts and Implementation",
+        "Request and Response Objects",
+        "Error Handling in Express",
+        "REST API Principles and Design",
+        "Building Your First REST API"
+      ],
+      practicals: [
+        "Create Express application structure",
+        "Build CRUD REST API endpoints",
+        "Implement custom middleware"
+      ]
+    },
+    {
+      day: "Day 3",
+      theme: "MongoDB Integration & Data Modeling",
+      topics: [
+        "Introduction to MongoDB (NoSQL Concepts)",
+        "Installing MongoDB and MongoDB Compass",
+        "CRUD Operations in MongoDB",
+        "Introduction to Mongoose ODM",
+        "Schema Design and Data Modeling",
+        "Mongoose Models and Queries",
+        "Validation and Schema Options",
+        "Connecting Express with MongoDB"
+      ],
+      practicals: [
+        "Setup MongoDB database",
+        "Create Mongoose schemas and models",
+        "Build complete CRUD API with database"
+      ]
+    },
+    {
+      day: "Day 4",
+      theme: "Authentication, Authorization & Advanced Topics",
+      topics: [
+        "User Authentication Concepts",
+        "JSON Web Tokens (JWT) - Introduction and Implementation",
+        "Password Hashing with bcrypt",
+        "Implementing Login and Registration APIs",
+        "Middleware for Route Protection",
+        "Role-Based Access Control (RBAC)",
+        "Environment Variables and Configuration (.env)",
+        "Input Validation and Sanitization"
+      ],
+      practicals: [
+        "Implement user registration and login",
+        "Create protected routes with JWT",
+        "Build role-based authorization"
+      ]
+    },
+    {
+      day: "Day 5",
+      theme: "MEAN Stack Integration & Deployment",
+      topics: [
+        "Overview of MEAN Stack Architecture",
+        "Connecting Angular Frontend with Node.js Backend",
+        "CORS Configuration and Handling",
+        "File Upload and Management (multer)",
+        "API Documentation Best Practices",
+        "Testing Node.js Applications (Introduction to Jest/Mocha)",
+        "Deployment Basics (Heroku/Vercel/AWS)",
+        "Production Best Practices and Security"
+      ],
+      practicals: [
+        "Integrate sample Angular app with Node.js API",
+        "Implement file upload functionality",
+        "Deploy application to cloud platform"
+      ]
+    }
+  ];
+
+  const downloadExcel = () => {
+    let csvContent = "Day,Theme,Session,Topic/Activity,Type\n";
+    
+    courseData.forEach(day => {
+      const dayNum = day.day;
+      const theme = day.theme;
+      
+      day.topics.forEach((topic, idx) => {
+        const session = `Session ${idx + 1}`;
+        csvContent += `"${dayNum}","${theme}","${session}","${topic}","Theory"\n`;
+      });
+      
+      day.practicals.forEach((practical, idx) => {
+        const session = `Practical ${idx + 1}`;
+        csvContent += `"${dayNum}","${theme}","${session}","${practical}","Hands-on"\n`;
+      });
+    });
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'NodeJS_MEAN_Stack_Course_TOC.csv');
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  return (
+    <div className="w-full max-w-6xl mx-auto p-6 bg-gradient-to-br from-green-50 to-blue-50">
+      <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">
+          5-Day Node.js Course for MEAN Stack Development
+        </h1>
+        <p className="text-gray-600 mb-4">
+          Comprehensive training program for fresh engineering graduates
+        </p>
+        <button
+          onClick={downloadExcel}
+          className="flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold"
+        >
+          <Download size={20} />
+          Download as Excel (CSV)
+        </button>
+      </div>
+
+      <div className="space-y-6">
+        {courseData.map((day, idx) => (
+          <div key={idx} className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white p-4">
+              <h2 className="text-xl font-bold">{day.day}</h2>
+              <p className="text-green-100 text-sm mt-1">{day.theme}</p>
+            </div>
+            
+            <div className="p-6">
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                  <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded text-sm">
+                    Theory Sessions
+                  </span>
+                </h3>
+                <ul className="space-y-2">
+                  {day.topics.map((topic, topicIdx) => (
+                    <li key={topicIdx} className="flex items-start gap-3">
+                      <span className="text-green-600 font-bold mt-1">•</span>
+                      <span className="text-gray-700">{topic}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                  <span className="bg-green-100 text-green-800 px-3 py-1 rounded text-sm">
+                    Hands-on Practicals
+                  </span>
+                </h3>
+                <ul className="space-y-2">
+                  {day.practicals.map((practical, practicalIdx) => (
+                    <li key={practicalIdx} className="flex items-start gap-3">
+                      <span className="text-blue-600 font-bold mt-1">→</span>
+                      <span className="text-gray-700">{practical}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+        <h3 className="text-lg font-semibold text-gray-800 mb-3">Course Objectives</h3>
+        <ul className="space-y-2 text-gray-700">
+          <li className="flex items-start gap-2">
+            <span className="text-green-600">✓</span>
+            <span>Understand Node.js fundamentals and asynchronous programming</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-green-600">✓</span>
+            <span>Build REST APIs using Express.js framework</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-green-600">✓</span>
+            <span>Work with MongoDB and implement data persistence</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-green-600">✓</span>
+            <span>Implement authentication and authorization mechanisms</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-green-600">✓</span>
+            <span>Deploy full-stack MEAN applications to production</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default NodeJSCourseTOC;
